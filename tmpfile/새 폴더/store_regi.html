@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="test123.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+
+  <!-- 가게 등록하는 폼 -->
+  <title>Document</title>
+   
+  <style>
+
+    @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+    
+    html{
+      font-family: 'Nanum Gothic', sans-serif;
+    }
+
+    body{
+      margin: 20px;
+    }
+    
+    hr{
+      height: 2px;
+      border: none;
+      background-color: rgb(221, 218, 218);
+      margin-top: 5px;
+    }
+
+    li {
+      list-style: none;
+    }
+  
+  
+    /* .real-upload {
+      display: none;
+    } */
+
+    
+    /*.upload {
+      width: 200px;
+      height: 200px;
+      background-color: antiquewhite;
+    }*/
+
+
+    /* 가게 이름, 위치 적는 곳 */
+    input[type=text]{
+      height: 40px;
+      width: 70%;
+      justify-content: center;
+      /* border:none; */
+      font-size:1em;
+      padding-left: 5px;
+      border-radius: 5px;
+      display:inline;
+      outline:none;
+      box-sizing: border-box;
+      color:black;
+      border: 2px solid rgb(221, 218, 218);
+      font-family: 'Nanum Gothic', sans-serif; 
+    }
+
+    input[type=text]::placeholder{
+      font-family: 'Nanum Gothic', sans-serif; 
+    }
+
+    /* 가게 소개 */
+    #store_info{
+      font-family: 'Nanum Gothic', sans-serif; 
+      height: 200px;
+      width: 70%;
+      font-size: 17px;
+      padding: 5px;
+      border-radius: 5px;
+      display:inline;
+      outline:none;
+      box-sizing: border-box;
+      color:black;
+      border: 2px solid rgb(221, 218, 218);
+    }
+
+    #box1 { 
+      /* border:solid; */
+      /* border:none; */
+      width: 60%; 
+      height: 200px;
+      border-radius: 5px;
+      border: 2px solid rgb(221, 218, 218);
+    }
+
+    .box2 { border:solid; width: 100px; height: 30px;}
+
+    /* 가게 이름 */
+    #box4 { 
+      margin-bottom: 30px; 
+      padding: 20px #222;
+      width:600px;
+      left:100px;
+    }
+
+    /* 가게 이미지 */
+    
+
+    /* 가게 소개 */
+    #box6 { 
+      /* border: 1px solid;  */
+      margin-bottom: 10px; 
+      padding: 20px #222
+    }
+
+    #box7 { 
+      /* border:solid;  */
+      width: 1000px; 
+      height: 30px;
+    }
+
+    button[type=button]{
+      font-family: 'Nanum Gothic', sans-serif; 
+      padding: 12px;
+      border-radius: 5px;
+      background-color: #d2e2fe; 
+      border: none;
+      display:inline;
+      left:30px;
+      position: relative;
+    }
+    
+    button[type=submit]{
+      font-family: 'Nanum Gothic', sans-serif; 
+      padding: 12px;
+      border-radius: 5px;
+      background-color: #d2e2fe; 
+      border: none;
+      display:inline;
+    }
+
+    .nameclass{
+      text-align:center;
+      position: relative;
+      left: -70px;
+    }
+
+    .box6class{
+      text-align:center;
+    }
+
+    #s_address{
+      left:30px;
+      position: relative;
+    }
+
+    #de_address{
+
+      left:30px;
+      position: relative;
+
+    }
+
+    #submit{
+
+      position: relative;
+      left:30%;
+
+    }
+
+    #cancel{
+
+      position: relative;
+      left:38%;
+
+    }
+
+    ul{
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+
+  </style>
+</head>
+
+<body>
+
+  <h4>가게 등록하기</h4>
+
+  <hr>
+
+  <form action="insertDB.php" method="post" enctype="multipart/form-data">
+
+    <div id = "box4">
+      <h4>가게 이름</h4>
+      <!-- <div style="float:left; margin-right:10px" class="box2" name='result'></div> -->
+      <div class="nameclass">
+        <input type="text" name='storename' id="storename" maxlength='20' placeholder="가게 이름을 적어주세요">
+      </div>
+      
+      <!-- <button type="button">이름설정</button><br><br> -->
+    </div>
+
+    <h4>가게 이미지</h4>
+
+    <div class="box">
+      <div class="js--image-preview"></div>
+      <div class="upload-options">
+        <label>
+          <input type="file" class="image-upload" accept="image/*" />
+        </label>
+      </div>
+    </div>
+
+
+
+    <div id = "box6">
+      <h4>가게 소개</h4>
+      <div class="box3" name='result2'> </div> 
+      <!-- <br> -->
+      <div class="box6class">
+        <textarea name="content" id="store_info" rows="15" cols="33"></textarea>  <br><br>
+      </div>
+      
+    </div>
+
+    <h4>가게 위치</h4>
+    <input type="hidden" id="s_latitude" name="latitude"/>
+    <input type="hidden" id="s_longitude" name="longitude"/>
+    <input type="text" id="s_address" name="address">
+    <button type="button" onclick="excute_mappopup();">위치설정</button>
+    <!-- <br> -->
+    <br>
+    <p style="font-size:14px;">상세 주소</p>
+    <input type="text" id="de_address" name="de_address">
+
+    <br><br><br><br><br>
+
+    <button type="submit" id="submit">등록하기</button>
+    <button type="button" id="cancel" onclick="history.back();">등록취소</button>
+  </form>
+
+  <p id="target"></p>
+
+  <!-- <input type="submit"><br> -->
+
+  <script>
+    var map_popup;
+    var ad_cookie;
+    var lat = document.getElementById('s_latitude');
+    var lng = document.getElementById('s_longitude');
+    var ad = document.getElementById('s_address')
+    var submit, cancel;
+
+    submit = document.getElementById('submit').addEventListener('click', function(){
+      alert('가게 인증 등록이 완료되었습니다.');
+      location.replace('../store_inf/store_inf.html');
+    });
+
+    cancel = document.getElementById('cancel').addEventListener('click', function(){
+      history.back();
+    })
+
+
+    function excute_mappopup(){
+      map_popup = window.open("map_regi.html", "위치설정");
+    }
+
+    function setChiledValue(latitude, longitude, address){
+      lat.value = latitude;
+      lng.value = longitude;
+      ad.value = address;
+      alert('latitude: ' + lat.value + 'longitude : ' + lng.value + 'address : ' + ad.value);
+    }
+
+    function getAddressCookie(){
+      var cookieData = document.cookie.split('=');
+      cValue = cookieData[1];
+      return unescape(cValue);
+    }
+
+    function getImageFiles(e) {
+      const uploadFiles = [];
+      const files = e.currentTarget.files;
+      const imagePreview = document.querySelector('.image-preview');
+      const docFrag = new DocumentFragment();
+        
+        
+      if ([...files].length >= 7) {
+        alert('이미지는 최대 6개 까지 업로드가 가능합니다.');
+        return
+      }
+  
+      // 파일 타입 검사
+      [...files].forEach(file => {
+        if (!file.type.match("image/.*")) {
+          alert('이미지 파일만 업로드가 가능합니다.');
+          return
+        }
+  
+          // 파일 갯수 검사
+        if ([...files].length < 7) {
+          uploadFiles.push(file);
+          const reader = new FileReader();
+          reader.onload = (e) => {
+            const preview = createElement(e, file);
+            imagePreview.appendChild(preview);
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+    }
+  
+    function createElement(e, file) {
+      const li = document.createElement('li');
+      const img = document.createElement('img');
+      img.setAttribute('src', e.target.result);
+      img.setAttribute('data-file', file.name);
+      li.appendChild(img);
+
+      return li;
+    }
+  
+    const realUpload = document.querySelector('.real-upload');
+    const upload = document.querySelector('.upload');
+
+    upload.addEventListener('click', () => realUpload.click());
+
+    realUpload.addEventListener('change', getImageFiles);
+
+    function printName()  {
+      const name = document.getElementById('storename').value;
+      document.getElementById("result").innerText = name;
+    }
+
+  </script>
+
+
+<script>
+  function initImageUpload(box) {
+    let uploadField = box.querySelector('.image-upload');
+  
+    uploadField.addEventListener('change', getFile);
+  
+    function getFile(e){
+      let file = e.currentTarget.files[0];
+      checkType(file);
+    }
+    
+    function previewImage(file){
+      let thumb = box.querySelector('.js--image-preview'),
+          reader = new FileReader();
+  
+      reader.onload = function() {
+        thumb.style.backgroundImage = 'url(' + reader.result + ')';
+      }
+      reader.readAsDataURL(file);
+      thumb.className += ' js--no-default';
+    }
+  
+    function checkType(file){
+      let imageType = /image.*/;
+      if (!file.type.match(imageType)) {
+        throw 'Datei ist kein Bild';
+      } else if (!file){
+        throw 'Kein Bild gewählt';
+      } else {
+        previewImage(file);
+      }
+    }
+    
+  }
+  
+  // initialize box-scope
+  var boxes = document.querySelectorAll('.box');
+  
+  for (let i = 0; i < boxes.length; i++) {
+    let box = boxes[i];
+    initDropEffect(box);
+    initImageUpload(box);
+  }
+  
+  
+  
+  /// drop-effect
+  function initDropEffect(box){
+    let area, drop, areaWidth, areaHeight, maxDistance, dropWidth, dropHeight, x, y;
+    
+    // get clickable area for drop effect
+    area = box.querySelector('.js--image-preview');
+    area.addEventListener('click', fireRipple);
+    
+    function fireRipple(e){
+      area = e.currentTarget
+      // create drop
+      if(!drop){
+        drop = document.createElement('span');
+        drop.className = 'drop';
+        this.appendChild(drop);
+      }
+      // reset animate class
+      drop.className = 'drop';
+      
+      // calculate dimensions of area (longest side)
+      areaWidth = getComputedStyle(this, null).getPropertyValue("width");
+      areaHeight = getComputedStyle(this, null).getPropertyValue("height");
+      maxDistance = Math.max(parseInt(areaWidth, 10), parseInt(areaHeight, 10));
+  
+      // set drop dimensions to fill area
+      drop.style.width = maxDistance + 'px';
+      drop.style.height = maxDistance + 'px';
+      
+      // calculate dimensions of drop
+      dropWidth = getComputedStyle(this, null).getPropertyValue("width");
+      dropHeight = getComputedStyle(this, null).getPropertyValue("height");
+      
+      // calculate relative coordinates of click
+      // logic: click coordinates relative to page - parent's position relative to page - half of self height/width to make it controllable from the center
+      x = e.pageX - this.offsetLeft - (parseInt(dropWidth, 10)/2);
+      y = e.pageY - this.offsetTop - (parseInt(dropHeight, 10)/2) - 30;
+      
+      // position drop and animate
+      drop.style.top = y + 'px';
+      drop.style.left = x + 'px';
+      drop.className += ' animate';
+      e.stopPropagation();
+      
+    }
+  }
+  
+  
+      
+  </script>
+
+
+
+
+</body>
+</html>
