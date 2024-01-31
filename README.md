@@ -49,5 +49,39 @@ Comsumers can see nearby restuarant by 'BusinessesFriends'!
 </div>
 
 
+## Layout
+
+<br/>
+
+**1. Main Screen(Store Map)**
+
+
+<img src="https://github.com/kimykstar/businessesfriends/assets/91407685/38e1c000-9b0a-4c06-993d-c04375f81ccd" height="550px" width="450px" align="left"/>
+<img src="https://github.com/kimykstar/businessesfriends/assets/91407685/d89e50e8-9dab-4327-9717-5621e274b285" height="600px" width="300px"/>
+
+<br/>
+
+**2. Store Community**
+
+
+<img src="https://github.com/kimykstar/businessesfriends/assets/91407685/263d3eab-470e-4617-8d54-1e1ce7855816" height="600px" width="300px"/>
+
+
+<br/>
+
+**3. Store event coupon**
+
+
+
+<img src="https://github.com/kimykstar/businessesfriends/assets/91407685/18b06194-43fb-45fa-8e47-c55552037391" height="600px" width="300px"/>
+<img src="https://github.com/kimykstar/businessesfriends/assets/91407685/8e8ae135-37d6-4480-a8f9-b48ffbb51565" height="600px" width="300px" align="right"/>
+
+
+
+## Key functions
+
+
+
+
 
 
